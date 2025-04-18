@@ -47,12 +47,12 @@ Route::post("ticket/edit/{ticketID}",[TicketDetailsController::class,"editTicket
 Route::get("ticket/cancel/{ticketID}",[TicketDetailsController::class,"cancelTicket"])->middleware("isLoggedIn");
 
 //==== Admin Routes//====//
-Route::get("admin", [AdminController::class, "viewAdminDashboard"])->middleware("isLoggedIn")->name("adminDashboard");
-Route::get("admin/event/create", [AdminController::class, "viewCreateEventsPage"])->middleware("isLoggedIn");
-Route::post("admin/event/create", [AdminController::class, "createEvents"])->middleware("isLoggedIn");
-Route::get("admin/event/edit/{eventID}", [AdminController::class, "viewEditEventsPage"])->middleware("isLoggedIn");
-Route::post("admin/event/edit/{eventID}", [AdminController::class, "editEvents"])->middleware("isLoggedIn");
-Route::get("admin/event/delete/{eventID}", [AdminController::class, "deleteEvents"])->middleware("isLoggedIn");
+Route::get("admin", [AdminController::class, "viewAdminDashboard"])->middleware("isLoggedIn","isAdmin")->name("adminDashboard");
+Route::get("admin/event/create", [AdminController::class, "viewCreateEventsPage"])->middleware("isLoggedIn","isAdmin");
+Route::post("admin/event/create", [AdminController::class, "createEvents"])->middleware("isLoggedIn","isAdmin");
+Route::get("admin/event/edit/{eventID}", [AdminController::class, "viewEditEventsPage"])->middleware("isLoggedIn","isAdmin");
+Route::post("admin/event/edit/{eventID}", [AdminController::class, "editEvents"])->middleware("isLoggedIn","isAdmin");
+Route::get("admin/event/delete/{eventID}", [AdminController::class, "deleteEvents"])->middleware("isLoggedIn","isAdmin");
 
 //==== Not authorized ===//
 Route::view("noaccess","noaccess");

@@ -16,58 +16,58 @@ class EventSeeder extends Seeder
     {
         //
         DB::table('events')->insert([
-            'eventName' => 'Conference',
-            'duration' => 240,
-            'description' => 'This is the description for the conference event.',
-            'eventType' => 'Conference',
+            'eventName' => 'Comedy Night',
+            'duration' => 150,
+            'description' => 'This is the description for the comedy night event.',
+            'eventType' => 'Comedy',
         ]);
         DB::table('events')->insert([
-            'eventName' => 'Blood Donation',
+            'eventName' => 'Mr Li Talk Show',
             'duration' => 120,
-            'description' => 'This is the description for the blood donation event.',
-            'eventType' => 'Blood Donation',
+            'description' => 'This is the description for the Mr Li talk show event.',
+            'eventType' => 'Talk Show',
         ]);
         DB::table('events')->insert([
-            'eventName' => 'Workshop',
+            'eventName' => 'Training Workshop',
             'duration' => 60,
-            'description' => 'This is the description for the workshop event.',
+            'description' => 'This is the description for the training workshop event.',
             'eventType' => 'Workshop',
         ]);
         DB::table('events')->insert([
-            'eventName' => 'Campus Tour',
+            'eventName' => 'Dance Competition',
             'duration' => 180,
-            'description' => 'This is the description for the campus tour event.',
-            'eventType' => 'Campus Tour',
-        ]);
-        DB::table('events')->insert([
-            'eventName' => 'Orientation',
-            'duration' => 240,
-            'description' => 'This is the description for the orientation event.',
-            'eventType' => 'Orientation',
-        ]);
-        DB::table('events')->insert([
-            'eventName' => 'Career Fair',
-            'duration' => 120,
-            'description' => 'This is the description for the career fair event.',
-            'eventType' => 'Career Fair',
-        ]);
-        DB::table('events')->insert([
-            'eventName' => 'Poster Competition',
-            'duration' => 120,
-            'description' => 'This is the description for the poster competition event.',
+            'description' => 'This is the description for the dance competition event.',
             'eventType' => 'Competition',
         ]);
         DB::table('events')->insert([
-            'eventName' => 'Drawing Competition',
-            'duration' => 120,
-            'description' => 'This is the description for the drawing competition event.',
-            'eventType' => 'Competition',
+            'eventName' => 'See You Again',
+            'duration' => 140,
+            'description' => 'This is the description for the "see you again" event.',
+            'eventType' => 'Concert',
         ]);
         DB::table('events')->insert([
-            'eventName' => 'Talk Show',
-            'duration' => 100,
-            'description' => 'This is the description for the talk show event.',
-            'eventType' => 'Talk Show',
+            'eventName' => 'Exhibition Fair',
+            'duration' => 300,
+            'description' => 'This is the description for the exhibition fair event.',
+            'eventType' => 'Exhibition',
+        ]);
+        DB::table('events')->insert([
+            'eventName' => 'Food Festival',
+            'duration' => 200,
+            'description' => 'This is the description for the food festival event.',
+            'eventType' => 'Festival',
+        ]);
+        DB::table('events')->insert([
+            'eventName' => 'Gala Dinner',
+            'duration' => 160,
+            'description' => 'This is the description for the gala dinner event.',
+            'eventType' => 'Dinner',
+        ]);
+        DB::table('events')->insert([
+            'eventName' => 'E-Sport Tournament',
+            'duration' => 120,
+            'description' => 'This is the description for the E-sport tournament event.',
+            'eventType' => 'Tournament',
         ]);
         DB::table('events')->insert([
             'eventName' => 'Countdown Concert "Sungai Long"',

@@ -7,18 +7,20 @@
     <form action="/book/{{ $events['id'] }}" method="POST">
         @csrf
 
-        {{-- Date & Time --}}
+        {{-- Display Default Date & Time --}}
         <div class="mb-3">
-            <label class="form-label">Time</label>
-            <div class="d-flex gap-3">
-                <input type="date" name="date" class="form-control w-25" value="{{ old('date') }}">
-                <input type="time" name="time" step="1800" class="form-control w-25" value="{{ old('time') }}">
-            </div>
-            <div class="text-danger mt-1">
-                @error('date')<div>{{ $message }}</div>@enderror
-                @error('time')<div>{{ $message }}</div>@enderror
-            </div>
+            <label class="form-label">
+                <p><strong>Date:</strong> {{ $date}}</p>
+                <p><strong>Time:</strong> {{ $time }}</p>
+            </label>
         </div>
+
+        <!-- pass the date and time to the controller -->
+        
+        {{-- Hidden inputs for date and time --}} 
+        <input type="hidden" name="date" value="{{ $date }}">
+        <input type="hidden" name="time" value="{{ $time }}">
+
 
         {{-- Venue --}}
         <div class="mb-3">

@@ -7,7 +7,7 @@
     <form action="{{ url('/admin/event/edit/' . $events->id) }}" method="POST">
         @csrf
 
-        {{-- Evebnt Name --}}
+        {{-- Event Name --}}
         <div class="mb-3">
             <label for="eventName">Event Name</label>
             <textarea name="eventName" id="eventName" class="form-control">{{ old('eventName', $events->eventName) }}</textarea>

@@ -13,9 +13,7 @@ class TicketDetailsController extends Controller
     //
     function viewTicketDetailsPage(Request $req, $ticketsId)
     {
-        if ($req->user()->cannot(
-            "actionOnTicket",
-            Ticket::find($ticketsId)
+        if ($req->user()->cannot("actionOnTicket",Ticket::find($ticketsId)
         )) {
             return redirect("/noaccess")->withErrors(["error" => "You are not authorized to view this ticket"]);
         }
@@ -27,10 +25,7 @@ class TicketDetailsController extends Controller
 
     function viewEditTicketPage(Request $req, $ticketsId)
     {
-        if ($req->user()->cannot(
-            "actionOnTicket",
-            Ticket::find($ticketsId)
-        ) || Ticket::find($ticketsId)->overdue()) {
+        if ($req->user()->cannot("actionOnTicket",Ticket::find($ticketsId)) || Ticket::find($ticketsId)->overdue()) {
             return redirect("/noaccess")->withErrors(["error" => "You are not authorized to view this ticket"]);
         }
 
@@ -41,44 +36,37 @@ class TicketDetailsController extends Controller
 
     function editTicket(Request $req, $ticketsId)
     {
-        if ($req->user()->cannot(
-            "actionOnTicket",
-            Ticket::find($ticketsId)
-        ) || Ticket::find($ticketsId)->overdue()) {
+        if ($req->user()->cannot("actionOnTicket",Ticket::find($ticketsId)) || Ticket::find($ticketsId)->overdue()) {
             return redirect("/noaccess")->withErrors(["error" => "You are not authorized to view this ticket"]);
         }
         $req["time"] = $req["time"] . ":00";
         $req['pax'] = $req['pax'] ?? 1;
         $ticket = Ticket::find($ticketsId);
         $req->validate([
-            'date' => ['required', 'date', "after_or_equal:today"],
-            'time' => ['required', 'regex:/^([01]\d|2[0-3]):(00|30):00$/'],
             'pax' => [
                 'required',
                 'numeric',
                 'min:1',
-                Rule::unique('tickets')->where(function ($query) use ($req, $ticket) {
+                // Keep pax validation but remove date/time checks
+                Rule::unique('tickets')->where(function ($query) use ($ticket) {
                     return $query->where('events_id', $ticket["events_id"])
-                        ->where('date', $req["date"])
-                        ->where('time', $req["time"])
-                        ->where('venues_id', $ticket["venues"]);
+                        ->where('date', $ticket["date"])
+                        ->where('time', $ticket["time"])
+                        ->where('venues_id', $ticket["venues_id"]);
                 })
             ],
         ]);
-
-        $ticket["date"] = $req["date"];
-        $ticket["time"] = $req["time"];
+    
+        // Only allow pax changes
         $ticket["pax"] = $req["pax"];
         $ticket->save();
+        
         return redirect("/profile")->with('success', 'Ticket updated successfully.');
     }
 
     function cancelTicket(Request $req, $ticketsId)
     {
-        if ($req->user()->cannot(
-            "actionOnTicket",
-            Ticket::find($ticketsId)
-        ) || Ticket::find($ticketsId)->overdue()) {
+        if ($req->user()->cannot("actionOnTicket",Ticket::find($ticketsId)) || Ticket::find($ticketsId)->overdue()) {
             return redirect("/noaccess")->withErrors(["error" => "You are not authorized to view this ticket"]);
         }
 

@@ -18,17 +18,17 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
         // Check if the user is authenticated and has the 'isAdmin' ability
-        // if (Gate::allows('isAdmin')) 
+        if (Gate::allows('isAdmin')) 
         {
             return $next($request);
         }
 
         // // If not, you can redirect or abort with a 403 Forbidden response
-        // return response()->json(['message' => 'Forbidden'], 403); 
-        // {
-        //     return $next($request);
-        // }
+        return response()->json(['message' => 'Forbidden'], 403); 
+        {
+            return $next($request);
+     }
 
-        // return redirect('/noaccess'); // Redirect to a no access page or any other action
+         return redirect('/noaccess'); // Redirect to a no access page or any other action
     }
 }
