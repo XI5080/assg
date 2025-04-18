@@ -47,13 +47,20 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function isOrganizer()
-    {
-        return $this->role === 'organizer';
-    }
-
     public function isAttendee()
     {
         return $this->role === 'attendee';
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'name');
+    }
+
+    protected $primaryKey = "name";
+    protected $keyType = "string";
+    protected $timesstamps = false;
+    use Notifiable;
+
+
 }

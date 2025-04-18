@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -15,32 +16,37 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->insert([
+            'name' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'attendee',]);
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',]);
+            
         // Admin user
         User::create([
             'name' => 'Admin User',
-            'email' => 'admin@example.com',
+            'email' => 'admin1@example.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
         ]);
         
-        // Organizer user
-        User::create([
-            'name' => 'Organizer User',
-            'email' => 'organizer@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'organizer',
-        ]);
         
         // Attendee user
         User::create([
             'name' => 'Attendee User',
-            'email' => 'attendee@example.com',
+            'email' => 'attendee1@example.com',
             'password' => Hash::make('password'),
             'role' => 'attendee',
         ]);
         
         // Create random users
-        User::factory()->count(10)->create(['role' => 'organizer']);
+        User::factory()->count(10)->create(['role' => 'admin']);
         User::factory()->count(20)->create(['role' => 'attendee']);
     }
 }

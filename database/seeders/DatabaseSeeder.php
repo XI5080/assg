@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
+            EventSeeder::class,
+            VenueSeeder::class,
+            EventVenueSeeder::class,
+            TicketSeeder::class,
+            // Add other seeders here
         ]);
     }
 }
